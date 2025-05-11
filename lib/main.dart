@@ -54,17 +54,34 @@ class _MyHomePageState extends State<MyHomePage> {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                RichText(
-                  text: TextSpan(
-                    text: "Hi, ",
-                    style: Theme.of(context).textTheme.headlineMedium,
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: value.isEmpty ? '_ _ _ _' : ' $value',
-                        style: Theme.of(context).textTheme.headlineMedium!
-                            .copyWith(fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                InkWell(
+                  onTap: () {
+                    if (_name.value.isEmpty) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => NameScreen(
+                                callBack: (value) {
+                                  _name.value = value;
+                                },
+                              ),
+                        ),
+                      );
+                    }
+                  },
+                  child: RichText(
+                    text: TextSpan(
+                      text: "Hi, ",
+                      style: Theme.of(context).textTheme.headlineMedium,
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: value.isEmpty ? '_ _ _ _' : ' $value',
+                          style: Theme.of(context).textTheme.headlineMedium!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
@@ -87,15 +104,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     _button(
                       onTap: () {
                         if (_name.value.isEmpty) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => NameScreen(
-                                    callBack: (value) {
-                                      _name.value = value;
-                                    },
-                                  ),
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Please enter your name first. Click on Hi',
+                              ),
                             ),
                           );
                         } else {
@@ -108,15 +121,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     _button(
                       onTap: () {
                         if (_name.value.isEmpty) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => NameScreen(
-                                    callBack: (value) {
-                                      _name.value = value;
-                                    },
-                                  ),
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Please enter your name first. Click on Hi',
+                              ),
                             ),
                           );
                         } else {
